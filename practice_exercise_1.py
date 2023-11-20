@@ -24,12 +24,11 @@ avatar_url = "https://code.s3.yandex.net/qa-automation-engineer/python/files/ava
 driver.find_element(By.ID, 'owner-avatar').send_keys(avatar_url)
 
 # Сохрани новое изображение
-driver.find_element(By.XPATH, './/form[@name="edit-avatar"]/button[@class = "button popup__button"]').click()
+driver.find_element(By.XPATH, './/form[@name="edit-avatar"]/button[text() = "Сохранить"]').click()
 
 # Запиши в переменную style значение атрибута style для элемента с изображением профиля
-style = driver.find_element(By.CLASS_NAME, 'profile__image').get_attribute('style')
-
+style = driver.find_element(By.CSS_SELECTOR, '.profile__image').get_attribute('style')
 # Проверь, что в style содержится ссылка на аватар
-assert 'https://code.s3.yandex.net/qa-automation-engineer/python/files/avatarSelenium.png' in style
+assert avatar_url in style
 
 driver.quit()
